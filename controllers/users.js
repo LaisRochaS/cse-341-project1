@@ -22,8 +22,7 @@ const getSingle = async (req, res) => {
 
     try {
         const db = getDb();
-        const user = await db.collection('users').findOne({ _id: find(ObjectId(userId)
-        ) }); 
+        const user = await db.collection('users').findOne(_id(userId));
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
