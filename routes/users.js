@@ -1,9 +1,9 @@
-const router = require('express');
-const router = router.Router();
+const express = require('express');
+const router = express.Router(); 
 
-const usersController = require('../controllers/usersController');
 
-router.get('/', usersController.getAllUsers);
-router.get('/:id', usersController.getUserById);
+router.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
 
 module.exports = router;
