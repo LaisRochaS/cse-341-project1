@@ -16,13 +16,13 @@ const getAll = async (req, res) => {
 const getSingle = async (req, res) => {
     const userId = req.params.id; 
 
-    if (!ObjectId.isValid(userId)) {
+    if (ObjectId.isValid(userId)) {
         return res.status(400).json({ message: 'Invalid user ID format' });
     }
 
     try {
         const db = getDb();
-        const user = await db.collection('users').findOne(_id(userId));
+        const user = await db.collection('users').find(_id(userId));
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
