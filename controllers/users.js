@@ -1,38 +1,21 @@
-const mongodb = require('mongodb');
-const { getDb } = require('./data/database'); 
-const ObjectId = mongodb.ObjectId;
+const mongodb = require('../data/database');
+const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
-    try {
-        const db = getDb();
-        const users = await db.collection('users').find().toArray(); 
+    const result = await mongodb.getDatabase().db().collection('users').find();
+    result.toArray().then((users) => {
+        res.setHeader('Content-Type', 'application/json');
         res.status(200).json(users);
-    } catch (error) {
-        console.error('Error fetching all users:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
-    }
+    });
 };
 
 const getSingle = async (req, res) => {
-    const userId = req.params.id; 
-
-    if (ObjectId.isValid(userId)) {
-        return res.status(400).json({ message: 'Invalid user ID format' });
-    }
-
-    try {
-        const db = getDb();
-        const user = await db.collection('users').find(_id(userId));
-
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        res.status(200).json(user); 
-    } catch (error) {
-        console.error('Error fetching user:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
-    }
+    const userId = new ObjectId(req.params.id);
+    const result = await mongodb.getDatabase().db().collection('users').find({ _id: userId });
+    result.toArray().then((users) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(users[0]);
+    });
 };
 
 module.exports = {
