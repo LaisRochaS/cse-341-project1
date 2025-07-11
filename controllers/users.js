@@ -31,7 +31,7 @@ const getSingle = async (req, res) => {
         }
 
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(users[0]);
+        res.status(200).json(contacts[0]);
     } catch (err) {
         res.status(500).json({ error: 'Failed to get user' });
     }
