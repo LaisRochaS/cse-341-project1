@@ -1,8 +1,8 @@
 {
-  "email":"test@test.com",
-  "ipaddress":"0.0.0.0.0/0",
-  "port":3000,
-  "mongodb_url":"mongodb+srv://mongo:mongo@cluster0.prnkz38.mongodb.net/project1",
+  "email": "test@test.com",
+  "ipaddress": "0.0.0.0.0/0",
+  "port": 3000,
+  "mongodb_url": "mongodb+srv://mongo:mongo@cluster0.prnkz38.mongodb.net/project1",
   "name": "cse-341-project1",
   "version": "1.0.0",
   "description": "My first project",
@@ -22,9 +22,12 @@
   },
   "homepage": "https://github.com/LaisRochaS/cse-341-project1#readme",
   "dependencies": {
+    "body-parser": "^2.2.0",
     "dotenv": "^17.0.1",
     "express": "^5.1.0",
     "mongobd": "^0.0.1-security.0",
-    "mongodb": "^6.17.0"
+    "mongodb": "^6.17.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
   }
 }
